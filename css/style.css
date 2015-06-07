@@ -23,23 +23,28 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999999;
   line-height: 29px;
   padding: 10px;
 }
 
+h2, h3 {
+  color: #999999;
+}
+
 h3 {
-  font-style: italic;
+  margin-top: 1em;
   font-size: 20px;
-  color: #000000;
   line-height: 22px;
 }
 
-h4 {
+h4.onlineClassTitle {
   font-weight: bold;
   font-size: 14px;
   color: #4A4A4A;
   line-height: 17px;
+  padding:10px;
+  padding-left: 0%;
+  padding-right: 5%;
 }
 
 h2, h3, h4, h5 {
@@ -77,6 +82,16 @@ a {
   text-decoration: none;
   margin-top: 10px;
   display: block;
+}
+
+a.onlineUrl {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 0em;
+}
+
+a.certificateUrl {
+  display: inline;
 }
 
 .welcome-message {
@@ -148,6 +163,13 @@ ul {
 
 img {
   padding: 10px;
+}
+
+img.projectImage {
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
 }
 
 /* Bar chart stuff */

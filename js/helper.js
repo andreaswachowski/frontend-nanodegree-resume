@@ -40,20 +40,23 @@ var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectImage = '<img class="projectImage" src="%data%">';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
-var HTMLschoolDegree = ' -- %data%</a>';
+var HTMLschoolDegree = ' &mdash; %data%</a>';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+var HTMLschoolDescription = '<br><p class="education-entry-description">%data%</p>';
 
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
-var HTMLonlineSchool = ' - %data%</a>';
+var HTMLonlineClassStart = HTMLschoolStart;
+var HTMLonlineTitle = '<h4 class="onlineClassTitle">%data%';
+var HTMLonlineSchool = ' &mdash; %data%</h4>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineURL = '<br><a class="onlineUrl" href="#">%data%</a>';
+var HTMLcertificateURL = '<br><p>Certificate: <a class="certificateUrl" href="#">%data%</a></p>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
@@ -85,7 +88,7 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  logClicks(loc.pageX,loc.pageY);
 });
 
 
@@ -120,24 +123,31 @@ function initializeMap() {
   */
   function locationFinder() {
 
-    // initializes an empty array
-    var locations = [];
+    // To avoid duplicates in the locations, we will use an object as an
+    // assocative array and later convert the locatino list to an array.
+    var uniqueLocations = {};
 
-    // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    // adds the single location property from bio to the locations object
+    uniqueLocations[bio.contacts.location] = 1;
 
     // iterates through school locations and appends each location to
     // the locations array
     for (var school in education.schools) {
-      locations.push(education.schools[school].location);
+      // locations.push(education.schools[school].location);
+      uniqueLocations[education.schools[school].location] = 1;
     }
 
     // iterates through work locations and appends each location to
     // the locations array
     for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
+      uniqueLocations[work.jobs[job].location] = 1;
     }
 
+    var locations = [];
+    for (var location in uniqueLocations) {
+      locations.push(location);
+    }
+    console.log(locations);
     return locations;
   }
 
@@ -170,7 +180,7 @@ function initializeMap() {
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+      infoWindow.open(map,marker);
     });
 
     // this is where the pin actually gets added to the map.
@@ -233,7 +243,7 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
