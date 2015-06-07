@@ -252,18 +252,6 @@ function locationizer() {
     return locations;
 }
 
-// name should be of the form "firstName LastName"
-// inName then returns "Firstname LASTNAME"
-function inName(name) {
-  nameParts = name.trim().split(" ");
-  internationalizedName = nameParts[0][0].toUpperCase() +
-    nameParts[0].slice(1).toLowerCase() +
-    " " +
-    nameParts[1].toUpperCase();
-  console.log(internationalizedName);
-  return internationalizedName;
-}
-
 bio.display();
 work.display();
 projects.display();

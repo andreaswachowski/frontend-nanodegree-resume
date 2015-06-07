@@ -147,7 +147,7 @@ function initializeMap() {
     for (var location in uniqueLocations) {
       locations.push(location);
     }
-    console.log(locations);
+    // console.log(locations);
     return locations;
   }
 
