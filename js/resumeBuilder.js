@@ -9,7 +9,7 @@ var bio = { "name": "Andreas Wachowski",
     "twitter": "awachowski",
     "location": "Hamburg"
   },
-  "bioPic": "images/me.jpg",
+  "bioPic": "images/avatar_175x175.png",
   "welcomeMsg": "Web and iOS applications. Software Development Management.",
   "skills": skills
 };
