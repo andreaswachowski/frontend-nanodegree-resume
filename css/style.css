@@ -94,6 +94,10 @@ a.certificateUrl {
   display: inline;
 }
 
+a.inline {
+  display: inline;
+}
+
 .welcome-message {
   font-style: italic;
   font-size: 18px;

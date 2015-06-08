@@ -57,6 +57,22 @@ var HTMLonlineSchool = ' &mdash; %data%</h4>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a class="onlineUrl" href="#">%data%</a>';
 var HTMLcertificateURL = '<br><p>Certificate: <a class="certificateUrl" href="#">%data%</a></p>';
+var HTMLimageModal = '<div class="modal fade" id="%id%" tabindex="-1" role="dialog" aria-labelledby="modalLabelFor%id%" aria-hidden="true">' +
+        '<div class="modal-dialog">' +
+          '<div class="modal-content">' +
+            '<div class="modal-header">' +
+              '<h4 class="modal-title" id="modalLabelFor%id%">%title%</h4>' +
+            '</div>' +
+            '<div class="modal-body">' +
+              '<img class="img-responsive" src="%filename%" alt="%title%">' +
+              '<p>%description%</p>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+              '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';

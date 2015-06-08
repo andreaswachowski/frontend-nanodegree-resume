@@ -158,7 +158,27 @@ var projects = {
       "title": "Blender bathroom visualization",
       "dates": "2015-01",
       "description": "Learned some 3d modelling with Blender. The most challenging part was to learn how to keep the project maintainable with many objects and many scenes for the same room: The furniture objects etc. each modelled in a separate file. They were aggregated in another file containing all scenes for one specific room. In turn, each scene included the same general groups like 'room', 'electricity', 'furniture', etc. The distinctive element of a scene was usually just a different camera configuration. In addition, a 'wip' (work in progress) scene which acted as the actual working area, but didn't participate in the final render. Adding an object involved adding a link to the room file, initially to the 'wip' scene, and then adding it to the corresponding group. Whenever the object was moved or changed, it was hence updated automatically throughout all render scenes.",
-      "images": [ "images/bad_blick_von_decke_large.jpg", "images/wc_blick_von_tuer_schraeg_rechts_small.jpg" ]
+      "thumbnails": [ "images/bad_blick_von_decke_small.jpg", "images/wc_blick_von_tuer_schraeg_rechts_small.jpg" ],
+      // images are optional and, if present, will result in allowing the
+      // thumbnails to be clicked upon, showing an enlarged version of it.
+      // The order of images *must* correspond to the order of thumbnails
+      // Each image entry consists of
+      // - the filename 
+      // - the title for the modal. Will also be used as image alt-tag 
+      // - the HTML id for the modal
+      // - optionally a caption displayed in a paragraph below the image
+      // TODO: Use associative array instead of relying on hardcoded order.
+      "images": [ [ "images/bad_blick_von_decke_large.jpg",
+                    "Top view into a bathroom",
+                    "bad_blick_von_decke",
+                    "It took a while to get the lighting appropriate."
+                  ],
+                  [ "images/wc_blick_von_tuer_schraeg_rechts_large.jpg",
+                    "A different bathroom",
+                    "wc_blick_von_tuer_schraeg_rechts",
+                    "Positioning the camera such that vertical lines remain vertical, while still showing enough is challenging. As I have understood now, it's often a beginner's mistake to try to include too much in one image. Architectural renders often work better when constraining themselves to details. (see <a class='inline' href='https://www.youtube.com/watch?v=GQM7FNjGAHA'>Andrew Price\'s 13 deadly Sins of Architectural Rendering (YouTube)</a>)"
+                  ]
+      ]
     }
   ]
 };
@@ -211,9 +231,17 @@ projects.display = function() {
     $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
     $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
     $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
-    if (project.images && project.images.length > 0) {
-      for (var imageIdx in project.images) {
-        $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.images[imageIdx]));
+    if (project.thumbnails && project.thumbnails.length > 0) {
+      for (var imageIdx in project.thumbnails) {
+        $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.thumbnails[imageIdx]));
+        if (project.images[imageIdx]) {
+          var image=project.images[imageIdx];
+          var thumbnail = $(".project-entry:last").find("img:last");
+          thumbnail.attr("data-toggle","modal");
+          thumbnail.attr("data-target","#" + image[2]);
+          var modal = HTMLimageModal.replace(/%filename%/g, image[0]).replace(/%title%/g,image[1]).replace(/%id%/g, image[2]).replace("%description%", image[3]);
+          $(modal).insertAfter("#main");
+        }
       }
     }
   }
