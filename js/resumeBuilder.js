@@ -1,7 +1,7 @@
 var skills = ["Ruby on Rails", "JavaScript", "Objective-C/Swift", "C++", "Scrum", "Kanban", "General Management" ];
 
 var bio = { "name": "Andreas Wachowski",
-  "role": "Software Development",
+  "role": "Solutions in Software",
   "contacts": {
     "mobile": "---",
     "email": "&lt;firstname&gt;.&lt;lastname&gt;@gmail.com",
@@ -10,7 +10,7 @@ var bio = { "name": "Andreas Wachowski",
     "location": "Hamburg"
   },
   "bioPic": "images/me.jpg",
-  "welcomeMsg": "Web Development. iOS Development. Software Development Management.",
+  "welcomeMsg": "Web and iOS applications. Software Development Management.",
   "skills": skills
 };
 
@@ -168,11 +168,17 @@ bio.display = function () {
   $("#header").prepend(HTMLheaderName.replace("%data%",bio.name));
   $("#header").append(HTMLbioPic.replace("%data%",bio.bioPic));
   if (bio.welcomeMsg) $("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg));
-  if (bio.contacts.twitter) $("#topContacts").append(HTMLtwitter.replace("%data%",bio.contacts.twitter));
-  if (bio.contacts.github) $("#topContacts").append(HTMLgithub.replace("%data%",bio.contacts.github));
-  if (bio.contacts.email) $("#topContacts").append(HTMLemail.replace("%data%",bio.contacts.email));
-  if (bio.contacts.blog) $("#topContacts").append(HTMLblog.replace("%data%",bio.contacts.blog));
-  if (bio.contacts.location) $("#topContacts").append(HTMLlocation.replace("%data%",bio.contacts.location));
+  var contactsInfo = "";
+  if (bio.contacts.twitter) contactsInfo += HTMLtwitter.replace("%data%",bio.contacts.twitter);
+  if (bio.contacts.github) contactsInfo += HTMLgithub.replace("%data%",bio.contacts.github);
+  if (bio.contacts.email) contactsInfo += HTMLemail.replace("%data%",bio.contacts.email);
+  if (bio.contacts.blog) contactsInfo += HTMLblog.replace("%data%",bio.contacts.blog);
+  if (bio.contacts.location) contactsInfo += HTMLlocation.replace("%data%",bio.contacts.location);
+  console.log(contactsInfo);
+
+  $("#topContacts").append(contactsInfo);
+  $("#footerContacts").append(contactsInfo);
+
   if (bio.skills && bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
     for (var idx=0;idx<bio.skills.length;idx++) {
