@@ -1,13 +1,8 @@
-- check-in
-- rework index.html
-  - get rid of (most of) the comments in index.html
-  - use HTML5-sectioning
-  - adopt to Udacity styleguide (no type= in csslink)
+- index.html: use HTML5-sectioning
   
-- check and possibly add responsiveness
+- use Bootstrap to add responsiveness
 - Adapt colors and fonts
-- add real content
-- add modals for project pictures
+- complete content
 
 - make this a proper yeoman project, at least use
   jslint and bower

@@ -1,10 +1,10 @@
 // name should be of the form "firstName LastName"
 // inName then returns "Firstname LASTNAME"
 function inName(name) {
-  nameParts = name.trim().split(" ");
+  nameParts = name.trim().split(' ');
   internationalizedName = nameParts[0][0].toUpperCase() +
     nameParts[0].slice(1).toLowerCase() +
-    " " +
+    ' ' +
     nameParts[1].toUpperCase();
   // console.log(internationalizedName);
   return internationalizedName;
@@ -15,11 +15,11 @@ function getRelationship(x,y) {
   var yIsNumber = !isNaN(parseFloat(y)) && isFinite(y);
   if (xIsNumber && yIsNumber) {
     if (x > y) {
-      return ">";
+      return '>';
     } else if (x < y) {
-      return "<";
+      return '<';
     } else {
-      return "=";
+      return '=';
     }
   } else if (!(xIsNumber || yIsNumber)) {
     return "Can't compare relationships because " + x + " and " + y + " are not numbers";
@@ -32,8 +32,8 @@ function getRelationship(x,y) {
 function alphabetizer(names) {
   var namesByLastName = [];
   for (var fullName in names) {
-    var firstAndLast = names[fullName].split(" ");
-    namesByLastName.push(firstAndLast[1] + ", " + firstAndLast[0]);
+    var firstAndLast = names[fullName].split(' ');
+    namesByLastName.push(firstAndLast[1] + ', ' + firstAndLast[0]);
   }
   namesByLastName.sort();
   return namesByLastName;
