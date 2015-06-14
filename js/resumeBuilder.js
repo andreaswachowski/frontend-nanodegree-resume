@@ -121,27 +121,28 @@ var education = {
       "title": "Text Mining and Analytics",
       "school": "Coursera",
       "dates": "2015-06-08&ndash;",
+      "certificateUrl": "TBD",
       "url": "https://www.coursera.org/course/textanalytics"
     },*/
     {
       "title": "Cluster Analysis in Data Mining",
       "school": "Coursera",
       "dates": "2015-04-27&ndash;2015-06-04",
-      "certificateUrl": "TBD",
+      "certificateUrl": "https://www.coursera.org/account/accomplishments/records/k2zD2Wu9H4usaFkK",
       "url": "https://www.coursera.org/course/clusteranalysis"
     },
     {
       "title": "Text Retrieval and Search Engines",
       "school": "Coursera",
       "dates": "2015-0-169&ndash;2015-04-19",
-      "certificateUrl": "https://www.coursera.org/account/accomplishments/certificate/V5H4RKGVH6",
+      "certificateUrl": "https://www.coursera.org/account/accomplishments/records/rAAdVPCRPa2XMPvn",
       "url": "https://www.coursera.org/course/textretrieval"
     },
     {
       "title": "Pattern Discovery in Data Mining",
       "school": "Coursera",
       "dates": "2015-02-09&ndash;2015-03-19",
-      "certificateUrl": "https://www.coursera.org/account/accomplishments/certificate/TXG59LEHSJ",
+      "certificateUrl": "https://www.coursera.org/account/accomplishments/records/mw9AGZSBVWVuKpy3",
       "url": "https://www.coursera.org/course/patterndiscovery"
     }
   ]
@@ -276,9 +277,9 @@ education.display = function() {
     var course = education.onlineCourses[courseIdx];
     $('.education-entry:last').append(HTMLonlineTitle.replace('%data%',course.title) + HTMLonlineSchool.replace('%data%',course.school));
     $('.education-entry:last').append(HTMLonlineDates.replace('%data%',course.dates));
-    $('.education-entry:last').append(HTMLonlineURL.replace('%data%',course.url));
+    $('.education-entry:last').append(HTMLonlineURL.replace(/%data%/g,course.url));
     if (course.certificateUrl) {
-      $('.education-entry:last').append(HTMLcertificateURL.replace('%data%',course.certificateUrl));
+      $('.education-entry:last').append(HTMLcertificateURL.replace(/%data%/g,course.certificateUrl));
     }
   }
 };
